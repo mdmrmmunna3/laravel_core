@@ -19,7 +19,18 @@ const Home = () => {
 
     useEffect(() => {
         fetchDoctorData();
-    }, [])
+    }, []);
+
+    const handleDelete = (deleteId) => {
+        console.log(deleteId);
+        axiosInstant.delete(`doctors/${deleteId}`)
+            .then((res) => {
+                fetchDoctorData();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
     return (
         <div>
@@ -35,18 +46,31 @@ const Home = () => {
                             <th>Password</th>
                             <th>Phone</th>
                             <th>Specialty</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {
-                            doctors.map((doctor) => (<tr key={doctor?.id} doctor={doctor}>
-                                <td>{doctor?.id}</td>
-                                <td>{doctor?.name}</td>
-                                <td>{doctor?.email}</td>
-                                <td>{doctor?.password}</td>
-                                <td>{doctor?.phone}</td>
-                                <td>{doctor?.spciality}</td>
-                            </tr>))
+                            doctors.length === 0 ?
+
+                                (<tr>
+                                    <td colSpan="7" className="text-center text-red-500 py-4">
+                                        No data found
+                                    </td>
+                                </tr>
+                                )
+                                :
+                                doctors.map((doctor, index) => (<tr key={doctor?.id} doctor={doctor}>
+                                    {/* <td>{doctor?.id}</td> */}
+                                    <td>{index + 1}</td>
+                                    <td>{doctor?.name}</td>
+                                    <td>{doctor?.email}</td>
+                                    <td>{doctor?.password}</td>
+                                    <td>{doctor?.phone}</td>
+                                    <td>{doctor?.spciality}</td>
+                                    <td onClick={() => { handleDelete(doctor?.id) }} className='cursor-pointer bg-red-500 text-white px-10 py-6 rounded-md'>Delete</td>
+                                </tr>))
                         }
                     </tbody>
                 </table>

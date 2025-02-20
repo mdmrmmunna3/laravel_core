@@ -34,7 +34,7 @@ class DoctorController extends Controller
         $insertDoctor->email = $request->email;
         $insertDoctor->phone = $request->phone;
         $insertDoctor->password = $request->password;
-        $insertDoctor->spciality = $request->spciality;
+        $insertDoctor->speciality = $request->speciality;
         $insertDoctor->save();
         return response()->json($insertDoctor);
     }
@@ -42,25 +42,39 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Doctor $doctor)
+    public function show($doctor_id)
     {
-        //
+        $doctorData = Doctor::find($doctor_id);
+        return response()->json($doctorData);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Doctor $doctor)
+    public function edit(Request $request)
     {
-        //
+
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, $id)
     {
-        //
+        $updatedDoctor = Doctor::find($id);
+
+        $updatedDoctor->name = $request->name;
+        $updatedDoctor->email = $request->email;
+        $updatedDoctor->phone = $request->phone;
+        $updatedDoctor->speciality = $request->speciality;
+
+        $updatedDoctor->save();
+        return response()->json([
+            'message' => 'Doctor updated successfully',
+            'doctor' => $updatedDoctor,
+        ], 200);
+
     }
 
     /**

@@ -61,22 +61,18 @@
             <label for="email">Email</label>
             <input type="email" name="email" id="email" value="{{ old('email') }}">
             @error('email')
-                <div class="errors">
-                    {{ $message }}
-                </div>
+                <div class="errors">{{ $message }}</div>
             @enderror
         </div>
         <div class="input_box">
-            <label for="pass">Password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" id="password" value="{{ old('password') }}">
             @error('password')
-                <div class="errors">
-                    {{ $message }}
-                </div>
+                <div class="errors">{{ $message }}</div>
             @enderror
         </div>
-        <button class="btn" type="submit" name="submitBtn">Login</button>
-        <p>You haven't an account? <a href="{{ route('register') }}">Register</a></p>
+        <button class="btn" type="submit">Login</button>
+        <p> Already have an account? <a href="{{ route('register') }}">Register</a></p>
     </form>
 </body>
 

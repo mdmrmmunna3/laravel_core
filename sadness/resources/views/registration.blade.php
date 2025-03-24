@@ -72,25 +72,25 @@
             @enderror
         </div>
         <div class="input_box">
-            <label for="pass">Password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" id="password" value="{{ old('password') }}">
             @error('password')
                 <div class="errors">{{ $message }}</div>
             @enderror
         </div>
         <div class="input_box">
-            <label for="pass">Status</label>
+            <label for="status">Status</label>
             <select name="status" id="status" value="{{ old('status') }}">
-                <option value="" selected>Select status</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+                <option value="" selected>Select Status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
             </select>
             @error('status')
                 <div class="errors">{{ $message }}</div>
             @enderror
         </div>
-        <button class="btn" type="submit" name="submitBtn">Registration</button>
-        <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
+        <button class="btn" type="submit">Register</button>
+        <p> You haven't an account? <a href="{{ route('login') }}">Login</a></p>
     </form>
 </body>
 

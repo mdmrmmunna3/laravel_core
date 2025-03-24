@@ -9,16 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // show register 
     public function register()
     {
-        return view("registration");
+        return view('registration');
     }
+    // show login 
     public function login()
     {
-        return view("login");
+        return view('login');
     }
 
-    public function makeRegister(Request $request)
+    // create register 
+    public function postRegister(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -33,34 +36,31 @@ class AuthController extends Controller
             'status' => $request->status,
         ]);
 
-        Auth::login($user);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 201);
     }
 
-    public function makeLogin(Request $request)
+    // create login 
+    public function postLogin(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
-
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with('success', 201);
         }
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        return back()->withErrors(['email' => 'Invalid Credentails']);
     }
 
-    //show dashboard
+    // show dashboard 
     public function dashboard()
     {
         return view('dashboard');
     }
 
-    //  logout
-    public function makeLogout(Request $request)
+    public function postLogout(Request $request)
     {
         Auth::logout();
         return redirect()->route('login');
     }
-
 }

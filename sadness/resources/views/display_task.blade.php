@@ -32,7 +32,7 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            /* overflow: hidden; */
             margin-top: 20px;
         }
 
@@ -48,6 +48,7 @@
             font-size: 16px;
             padding: 12px;
             color: #555;
+            text-align: center;
         }
 
         tr:nth-child(even) {
@@ -115,14 +116,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($tasks as $task)
+                    @foreach($tasks as $index => $task)
                         <tr>
-                            <td>{{ $task->id }}</td>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $task->name }}</td>
                             <td>{{ $task->describ }}</td>
                             <td>{{ $task->created_at->format('Y-m-d H:i') }}</td>
                             <td>
-                                <a href="#" class="btn btn-info">Edit</a>
+                                <a href="{{ route('editTask', $task->id) }}" class="btn btn-info">Edit</a>
                                 <form action="{{ route('deleteTask', $task->id) }}" method="post" style="display:inline;">
                                     @csrf
                                     @method('DELETE')

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .container {
             display: flex;
@@ -69,6 +70,20 @@
         .task:hover {
             color: white;
         }
+
+        .notification {
+            padding: 10px;
+            background-color: green;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
     </style>
 </head>
 
@@ -81,6 +96,20 @@
             <button class="btn" type="submit">Logout</button>
         </form>
     </div>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            });
+        </script>
+    @endif
+
+
+
     <div>
         <h2 class="titel">Create Task</h2>
 
@@ -96,7 +125,8 @@
             </div>
             <div class="input_box">
                 <label for="describ">Task Description</label>
-                <textarea name="describ" id="describ" rows="6" placeholder="Enter description"></textarea>
+                <textarea name="describ" id="describ" rows="6" placeholder="Enter description"
+                    value="{{ old('describ') }}"></textarea>
                 @error('describ')
                     <div class="errors">{{ $message }}</div>
                 @enderror

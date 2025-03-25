@@ -17,5 +17,9 @@ Route::post('logout', [AuthController::class, 'postLogout'])->middleware('auth')
 
 // task 
 Route::get('task', [TaskController::class, 'index'])->name('task');
+// create task 
 Route::post('dashboard', [TaskController::class, 'store'])->middleware('auth');
+// edit task 
+Route::get('editTask/{task}', [TaskController::class, 'edit'])->name('editTask');
+Route::put('editTask/{task}', [TaskController::class, 'update'])->name('updateTask');
 Route::delete('task/{task}', [TaskController::class, 'destroy'])->name('deleteTask');

@@ -35,8 +35,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'status' => $request->status,
         ]);
-
-        return redirect()->route('login')->with('success', 201);
+        Auth::login($user);
+        return redirect()->route('login')->with('success', 'user registration successfully');
     }
 
     // create login 
@@ -47,7 +47,7 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard')->with('success', 201);
+            return redirect()->route('dashboard')->with('success', 'user login successfully');
         }
         return back()->withErrors(['email' => 'Invalid Credentails']);
     }

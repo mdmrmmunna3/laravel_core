@@ -17,7 +17,12 @@ class TaskController extends Controller
         // return view("display_task", compact("tasks"));
 
         // retrive created user task
-        $tasks = auth()->user()->task()->orderBy("created_at", "desc")->paginate(10);
+        // dd(auth()->user());
+
+        // Continue with retrieving tasks
+        $tasks = auth()->user()->task()->orderBy("id", "desc")->paginate(10);
+
+
         return view("display_task", compact("tasks"));
     }
 
@@ -34,10 +39,23 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $task = Task::create($request->all());
-        $task->save();
-        return redirect()->route('task');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'describ' => 'nullable|string',
+        ]);
+
+        Task::create([
+            'name' => $request->name,
+            'describ' => $request->describ,
+            'user_id' => auth()->id(),
+        ]);
+        \Log::info('Session Data:', ['session' => session()->all()]);
+
+
+        return redirect()->back()->with('success', 'Task Created Successfully!');
+        // return redirect()->route('task')->with('success', 'Task Created Successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -52,15 +70,25 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('task')->with('error', 'You are not authorized to edit this task.');
+        }
+
+        return view('edit_task', compact('task'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('task')->with('error', 'You are not authorized to update this task.');
+        }
+        return redirect()->route('task')->with('success', 'Update task successfully!');
     }
 
     /**
@@ -68,7 +96,12 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        if ($task->user_id !== auth()->id()) {
+            return redirect()->route('task')->with('error', 'You are not authorized to delete this task.');
+        }
+
         $task->delete();
         return redirect()->route('task')->with('success', 'Task deleted successfully!');
     }
+
 }

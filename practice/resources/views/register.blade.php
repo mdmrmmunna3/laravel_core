@@ -10,7 +10,7 @@
 
 <body>
     <div class="mt-5 ms-5">
-        <a href="/" class="bg-sky-500 text-white px-10 py-4 font-serif">Go To Home</a>
+        <a href="/" class="bg-sky-500 font-medium text-white px-10 py-4 font-serif">Go To Home</a>
     </div>
     <h2 class="text-4xl text-cyan-500 text-center uppercase font-medium font-serif">Register Form</h2>
 

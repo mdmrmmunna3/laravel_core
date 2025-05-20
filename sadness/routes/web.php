@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('auth')->name('dashboard');
+Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('register', [AuthController::class, 'postRegister']);
 Route::post('login', [AuthController::class, 'postLogin']);

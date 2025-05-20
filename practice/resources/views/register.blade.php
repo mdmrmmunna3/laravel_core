@@ -19,26 +19,26 @@
             @csrf
             <div>
                 <label for="name" class="text-white text-xl">Name</label>
-                <input class="w-full p-2 bg-gray-100 " type="text" name="name" id="name" placeholder="Enter your name"
-                    value="{{ old('name') }}">
+                <input class="w-full py-2 pl-2 my-2 rounded-sm bg-white" type="text" name="name" id="name"
+                    placeholder="Enter Your Name" value="{{ old('name') }}">
                 @error('name')
-                    <div class="text-red-500 font-medium text-xs">{{ $message }}</div>
+                    <p class="text-red-700 font-medium text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <div class="my-4">
                 <label for="email" class="text-white text-xl">Email</label>
-                <input class="w-full p-2 bg-gray-100 " type="text" name="email" id="email"
-                    placeholder="Enter your email" value="{{ old('email') }}">
+                <input class="w-full py-2 pl-2 my-2 rounded-sm bg-white" type="email" name="email" id="name"
+                    placeholder="Enter Your Email" value="{{ old('email') }}">
                 @error('email')
-                    <div class="text-red-500 font-medium text-xs">{{ $message }}</div>
+                    <p class="text-red-700 font-medium text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <div>
                 <label for="password" class="text-white text-xl">Password</label>
-                <input class="w-full p-2 bg-gray-100 " type="password" name="password" id="password"
-                    placeholder="Enter your password" value="{{ old('password') }}">
+                <input class="w-full py-2 pl-2 my-2 rounded-sm bg-white" type="text" name="password" id="password"
+                    placeholder="Enter Your Password" value="{{ old('password') }}">
                 @error('password')
-                    <div class="text-red-500 font-medium text-xs">{{ $message }}</div>
+                    <p class="text-red-700 font-medium text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <button

@@ -20,17 +20,17 @@ class AuthController extends Controller
     public function makeRegister(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6',
+            "name" => "required|string|max:255",
+            "email" => "required|string|email|unique:users",
+            "password" => "required|string|min:8"
         ]);
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => bcrypt($request->password)
         ]);
         Auth::login($user);
-        return redirect()->route('login')->with('success', 'User Register Successfully!');
+        return redirect()->route('login')->with('success', 'User Register Successfully');
     }
 
     public function makeLogin(Request $request)

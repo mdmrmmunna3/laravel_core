@@ -13,6 +13,9 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = auth()->user()->task()->orderBy("id", "desc")->paginate(10);
+        if (!$tasks) {
+            return redirect()->route('login')->withErrors('please login first');
+        }
         // $tasks = Task::all();
         return view("task", compact("tasks"));
     }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -21,7 +22,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
     ];
+
+    // one to one relationship to profile model 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

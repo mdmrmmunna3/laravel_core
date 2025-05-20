@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +37,7 @@ class AuthController extends Controller
             'status' => $request->status,
         ]);
         Auth::login($user);
-        return redirect()->route('login')->with('success', 'user registration successfully');
+        return redirect()->route('login')->with('success', 'user Registration successful. Please verify your email.');
     }
 
     // create login 
@@ -47,6 +48,7 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         if (Auth::attempt($credentials)) {
+
             return redirect()->route('dashboard')->with('success', 'user login successfully');
         }
         return back()->withErrors(['email' => 'Invalid Credentails']);

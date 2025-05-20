@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -22,9 +23,10 @@ Route::post('register', [AuthController::class, 'makeRegister']);
 Route::post('login', [AuthController::class, 'makeLogin']);
 Route::post('logout', [AuthController::class, 'makeLogout'])->middleware('auth')->name('logout');
 
-Route::get('task', [TaskController::class, 'index'])->name('task');
+Route::get('task', [TaskController::class, 'index'])->middleware('auth')->name('task');
 Route::post('dashboard', [TaskController::class, 'store'])->middleware('auth');
 
 Route::get('edit_task/{task}', [TaskController::class, 'edit'])->name('editTask');
 Route::put('edit_task/{task}', [TaskController::class, 'update'])->name('updateTask');
 Route::delete('task/{task}', [TaskController::class, 'destroy'])->name('deleteTask');
+

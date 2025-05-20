@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +19,5 @@ Route::post('/add/teacher', [TeacherController::class, 'addTeacher'])->name('add
 Route::get('/delete/{id}', [TeacherController::class, 'deleteTeacher']);
 Route::get('/edit/{id}', [TeacherController::class, 'loadEditTeacherForm']);
 Route::post('/edit/teacher', [TeacherController::class, 'editTeacher'])->name('editTeacher');
+
+Route::get('/users', [UserController::class, 'index']);

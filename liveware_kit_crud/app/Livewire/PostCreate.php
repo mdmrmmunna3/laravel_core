@@ -30,6 +30,8 @@ class PostCreate extends Component
 
         $this->clearPostForm();
         Flux::modal('create-post')->close();
+        // create event 
+        $this->dispatch("reloadPosts");
     }
 
     public function clearPostForm()

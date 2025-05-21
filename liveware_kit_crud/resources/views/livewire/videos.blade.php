@@ -1,31 +1,27 @@
 <div>
-    <flux:modal.trigger name="create-post">
-        <flux:button>Create post</flux:button>
+
+    <flux:modal.trigger name="create-video">
+        <flux:button>Create Video</flux:button>
     </flux:modal.trigger>
 
-    <livewire:post-create />
-    <livewire:edit-post />
+    <livewire:create-video />
+    <livewire:edit-video />
 
-
-    <flux:modal name="delete-post" class="min-w-[22rem]">
+    <flux:modal name="delete-video" class="min-w-[22rem]">
         <div class="space-y-6">
             <div>
-                <flux:heading size="lg">Delete Post?</flux:heading>
-
+                <flux:heading size="lg">Delete Video?</flux:heading>
                 <flux:text class="mt-2">
-                    <p>You're about to delete this post.</p>
+                    <p>You're about to delete this Video.</p>
                     <p>This action cannot be reversed.</p>
                 </flux:text>
             </div>
-
             <div class="flex gap-2">
                 <flux:spacer />
-
                 <flux:modal.close>
                     <flux:button variant="ghost">Cancel</flux:button>
                 </flux:modal.close>
-
-                <flux:button type="submit" variant="danger" wire:click="destroy">Delete post</flux:button>
+                <flux:button type="submit" variant="danger" wire:click="destroy_video">Delete Vidoe</flux:button>
             </div>
         </div>
     </flux:modal>
@@ -36,22 +32,21 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
+                    <th>Video Title</th>
                     <th>Describtion</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="text-center">
-                <!-- row 1 -->
-                @foreach ($posts as $post)
 
+                @foreach ($videos as $video)
                     <tr>
-                        <th class="py-1">{{ $post->id }}</th>
-                        <td class="py-1">{{ $post->title }}</td>
-                        <td class="py-1">{{ $post->describ }}</td>
+                        <th class="py-1">{{ $video->id }}</th>
+                        <td class="py-1">{{ $video->title }}</td>
+                        <td class="py-1">{{ $video->description }}</td>
                         <td class="py-1">
-                            <flux:button size="sm" wire:click="edit({{ $post->id }})">Edit</flux:button>
-                            <flux:button size="sm" variant="danger" wire:click="delete({{ $post->id }})">Delete
+                            <flux:button size="sm" wire:click="edit({{ $video->id }})">Edit</flux:button>
+                            <flux:button size="sm" variant="danger" wire:click="delete({{ $video->id }})">Delete
                             </flux:button>
                         </td>
                     </tr>
@@ -60,6 +55,4 @@
             </tbody>
         </table>
     </div>
-
-
 </div>

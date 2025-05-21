@@ -15,6 +15,14 @@ Route::view('posts', 'posts')
     ->middleware(['auth', 'verified'])
     ->name('posts');
 
+Route::view('reels', 'reels')
+    ->middleware(['auth', 'verified'])
+    ->name('reels');
+
+Route::view('videos', 'videos')
+    ->middleware(['auth', 'verified'])
+    ->name('videos');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 

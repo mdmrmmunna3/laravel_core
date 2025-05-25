@@ -26,6 +26,11 @@
                 <flux:navlist.item icon="home" :href="route('videos')" :current="request()->routeIs('videos')"
                     wire:navigate>{{ __('Videos') }}</flux:navlist.item>
 
+                <flux:navlist.item icon="home" :href="route('articles')" :current="request()->routeIs('articles')"
+                    wire:navigate>
+                    {{ __('Articles') }}
+                </flux:navlist.item>
+
             </flux:navlist.group>
         </flux:navlist>
 

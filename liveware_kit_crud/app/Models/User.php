@@ -24,6 +24,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -54,7 +59,7 @@ class User extends Authenticatable
     {
         return Str::of($this->name)
             ->explode(' ')
-            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
     }
 }

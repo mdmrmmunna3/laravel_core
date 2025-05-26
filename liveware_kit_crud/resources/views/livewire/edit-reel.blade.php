@@ -8,6 +8,11 @@
 
             <flux:input label="Title" wire:model="reels_title" placeholder="Your Reel Title" />
             <flux:textarea label="Description" wire:model="description" placeholder="Your Reel Description" />
+            @if ($extstingImage)
+                <p class="text-sm mb-1">Current Image:</p>
+                <img src="{{ asset('storage/' . $extstingImage) }}" style="max-height: 100px; border-radius: 4px;">
+            @endif
+            <flux:input type="file" wire:model="newImage" label="New Image" />
 
             <div class="flex">
                 <flux:spacer />

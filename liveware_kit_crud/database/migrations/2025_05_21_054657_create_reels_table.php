@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('reels_title')->nullable();
             $table->text('description')->nullable();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

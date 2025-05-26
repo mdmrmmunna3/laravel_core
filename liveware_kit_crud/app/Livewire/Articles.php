@@ -7,23 +7,30 @@ use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 class Articles extends Component
 {
-    public $articles, $user_id, $articleId;
+    use WithPagination;
+    public $user_id, $articleId;
+
     public function render()
     {
-        return view('livewire.articles');
+        // $articles = Article::orderBy('id', 'DESC')->latest()->paginate(5);
+        $articles = Article::with('user')->where('user_id', Auth::id())->latest()->paginate(5);
+
+        return view('livewire.articles', ['articles' => $articles]);
     }
 
     public function mount()
     {
-        $this->articles = Article::with('user')->where('user_id', Auth::id())->get();
+        // $this->articles = Article::with('user')->where('user_id', Auth::id())->get();
     }
 
     #[On('reloadArticles')]
     public function reloadArticles()
     {
-        $this->articles = Article::with('user')->where('user_id', Auth::id())->get();
+        // $this->articles = Article::with('user')->where('user_id', Auth::id())->get();
+        $this->resetPage();
     }
 
     public function edit($id)

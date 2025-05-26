@@ -6,24 +6,29 @@ use App\Models\Post;
 use Flux\Flux;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Posts extends Component
 {
-    public $posts, $postId;
+    use WithPagination;
+    public $postId;
+    public $search = '';
     public function render()
     {
-        return view('livewire.posts');
+        $posts = Post::orderBy('id', 'desc')->paginate(3);
+        return view('livewire.posts', ['posts' => $posts]);
     }
 
     public function mount()
     {
-        $this->posts = Post::all();
+        // $this->posts = Post::all();
     }
 
     #[On("reloadPosts")]
     public function reloadPosts()
     {
-        $this->posts = Post::all();
+        // $this->posts = Post::all();
+        $this->resetPage();
     }
 
     public function edit($id)

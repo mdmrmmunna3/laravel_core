@@ -8,6 +8,7 @@ class Reel extends Model
 {
     protected $fillable = [
         'reels_title',
-        'description'
+        'description',
+        'image_path'
     ];
 }

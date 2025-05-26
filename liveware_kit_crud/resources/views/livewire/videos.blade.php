@@ -34,6 +34,7 @@
                     <th>ID</th>
                     <th>Video Title</th>
                     <th>Describtion</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -44,6 +45,14 @@
                         <th class="py-1">{{ $video->id }}</th>
                         <td class="py-1">{{ $video->title }}</td>
                         <td class="py-1">{{ $video->description }}</td>
+                        <td class="py-1">
+                            @if ($video->videoImage)
+                                <img src="{{ asset('storage/' . $video->videoImage) }}" alt="{{ $video->title }}"
+                                    class="w-10 h-10 rounded-full">
+                            @else
+                                <p>No Video Image found</p>
+                            @endif
+                        </td>
                         <td class="py-1">
                             <flux:button size="sm" wire:click="edit({{ $video->id }})">Edit</flux:button>
                             <flux:button size="sm" variant="danger" wire:click="delete({{ $video->id }})">Delete

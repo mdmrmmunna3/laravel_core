@@ -23,6 +23,10 @@ Route::view('videos', 'videos')
     ->middleware(['auth', 'verified'])
     ->name('videos');
 
+// Route::view('articles', 'articles')
+//     ->middleware(['auth', 'verified'])
+//     ->name('articles');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 

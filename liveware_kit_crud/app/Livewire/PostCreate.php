@@ -9,6 +9,7 @@ use Livewire\Component;
 class PostCreate extends Component
 {
     public $title, $describ;
+    public $successMessage = '';
     public function render()
     {
         return view('livewire.post-create');
@@ -30,6 +31,8 @@ class PostCreate extends Component
 
         $this->clearPostForm();
         Flux::modal('create-post')->close();
+
+        $this->successMessage = 'Post Created Successfully';
         // create event 
         $this->dispatch("reloadPosts");
     }

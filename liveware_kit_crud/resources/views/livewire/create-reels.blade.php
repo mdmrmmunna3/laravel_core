@@ -9,6 +9,7 @@
 
             <flux:input label="Title" wire:model="reels_title" placeholder="Your Reel Title" />
             <flux:textarea label="Description" wire:model="description" placeholder="Your Reel Description" />
+            <flux:input type="file" wire:model="image_path" label="Image" />
 
             <div class="flex">
                 <flux:spacer />

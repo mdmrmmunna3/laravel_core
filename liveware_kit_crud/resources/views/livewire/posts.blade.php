@@ -6,7 +6,6 @@
     <livewire:post-create />
     <livewire:edit-post />
 
-
     <flux:modal name="delete-post" class="min-w-[22rem]">
         <div class="space-y-6">
             <div>
@@ -30,6 +29,7 @@
         </div>
     </flux:modal>
 
+
     <div class="overflow-x-auto mt-5 max-w-full rounded-box border border-base-content/5 bg-base-100">
         <table class="table table-zebra w-full text-sm">
             <!-- head -->
@@ -43,10 +43,10 @@
             </thead>
             <tbody class="text-center">
                 <!-- row 1 -->
-                @foreach ($posts as $post)
+                @foreach ($posts as $index => $post)
 
                     <tr>
-                        <th class="py-1">{{ $post->id }}</th>
+                        <th class="py-1">{{ $index + 1 }}</th>
                         <td class="py-1">{{ $post->title }}</td>
                         <td class="py-1">{{ $post->describ }}</td>
                         <td class="py-1">
@@ -56,9 +56,11 @@
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
+    </div>
+    <div class="mt-4">
+        {{ $posts->links() }}
     </div>
 
 

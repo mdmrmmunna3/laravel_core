@@ -1,4 +1,9 @@
 <div>
+    @if ($successMessage)
+        <div class="alert alert-success">
+            {{ $successMessage }}
+        </div>
+    @endif
     <flux:modal name="create-post" class="md:w-96">
         <div class="space-y-6">
             <div>

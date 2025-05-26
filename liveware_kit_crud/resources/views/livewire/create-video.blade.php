@@ -7,6 +7,7 @@
             </div>
             <flux:input label="Name" wire:model="title" placeholder="Your Video Title" />
             <flux:textarea label="Description" wire:model="description" placeholder="Your Video Description" />
+            <flux:input type="file" label="Video Image" wire:model="videoImage" placeholder="Your Video Image" />
             <div class="flex">
                 <flux:spacer />
                 <flux:button type="submit" variant="primary" wire:click="submit_video">Create Video</flux:button>

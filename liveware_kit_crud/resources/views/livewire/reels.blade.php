@@ -34,6 +34,7 @@
                     <th>ID</th>
                     <th>Reel Title</th>
                     <th>Describtion</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -44,6 +45,14 @@
                         <th class="py-1">{{ $reel->id }}</th>
                         <td class="py-1">{{$reel->reels_title}}</td>
                         <td class="py-1">{{$reel->description}}</td>
+                        <td class="py-1">
+                            @if ($reel->image_path)
+                                <img src="{{ asset('storage/' . $reel->image_path) }}" alt="{{ $reel->reels_title }}"
+                                    class="w-10 h-10 rounded-full">
+                            @else
+                                <p>No Image Found</p>
+                            @endif
+                        </td>
                         <td class="py-1">
                             <flux:button size="sm" wire:click="edit({{ $reel->id }})">Edit</flux:button>
                             <flux:button size="sm" variant="danger" wire:click="delete({{ $reel->id }})">Delete
